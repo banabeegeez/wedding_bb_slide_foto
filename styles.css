@@ -1,3 +1,4 @@
+/* General Layout */
 body,
 html {
   margin: 0;
@@ -17,7 +18,7 @@ html {
   align-items: center;
 }
 
-/* Cover & Menu */
+/* Cover */
 #cover {
   display: flex;
   justify-content: center;
@@ -58,6 +59,7 @@ html {
   text-transform: uppercase;
 }
 
+/* Menu */
 .menu-content {
   display: flex;
   flex-direction: row;
@@ -96,11 +98,12 @@ html {
   border-radius: 15px;
 }
 
-/* Album & Slide */
+/* Album & Slide - Overlay Style */
 .slide-frame {
-  display: inline-block;
-  padding: 15px;
-  background: #061022;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
   border: 5px solid transparent;
   border-image: linear-gradient(
       45deg,
@@ -112,39 +115,42 @@ html {
     )
     1;
   border-radius: 8px;
-  width: fit-content;
-  height: fit-content;
-  max-width: 90vw;
-  max-height: 70vh;
-  margin-bottom: 90px;
+  width: auto;
+  height: auto;
+  max-width: 95vw;
+  max-height: 85vh;
+  margin-bottom: 0; /* Overlay mode */
+  box-shadow: 0 0 20px rgba(191, 149, 63, 0.2);
 }
+
 #slide-img {
   display: block;
   max-width: 100%;
-  max-height: 65vh;
+  max-height: 85vh;
   width: auto;
   height: auto;
-  object-fit: contain;
-  transition:
-    opacity 0.6s ease-in-out,
-    transform 0.6s ease-out;
+  object-fit: contain; /* Rasio asli terjaga */
+  transition: opacity 0.6s ease-in-out;
   opacity: 0;
-  transform: scale(1.05);
 }
+
 #slide-img.zoomed {
   opacity: 1;
-  transform: scale(1);
 }
 
 .controls-container {
   position: absolute;
-  bottom: 30px;
+  bottom: 20px;
   display: flex;
   justify-content: center;
   gap: 15px;
   width: 100%;
-  z-index: 10;
+  z-index: 20;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  padding: 20px 0;
 }
+
+/* Navigasi */
 .nav-btn {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
@@ -164,6 +170,62 @@ html {
   left: 20px;
   z-index: 20;
 }
+/* Posisi Tombol Rotate di Kiri Bawah */
+.rotate-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 30;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Posisi Tombol Fullscreen di Kanan Bawah */
+.fullscreen-btn-bottom {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 30;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Penyesuaian Mobile agar tidak menumpuk */
+@media (max-width: 768px) {
+  .rotate-btn,
+  .fullscreen-btn-bottom {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+    bottom: 10px;
+  }
+  .rotate-btn {
+    left: 10px;
+  }
+  .fullscreen-btn-bottom {
+    right: 10px;
+  }
+}
 .icon-text {
   font-size: 24px;
   width: 40px;
@@ -172,6 +234,35 @@ html {
   justify-content: center;
   align-items: center;
 }
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .menu-content {
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px;
+  }
+  .icon-btn {
+    width: 25px;
+    height: 25px;
+  }
+  .nav-btn {
+    padding: 8px;
+  }
+  .fullscreen-btn {
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+  .back-menu-btn {
+    top: 10px;
+    left: 10px;
+  }
+}
+
 @media (max-width: 768px) and (orientation: portrait) {
   body {
     position: absolute;
@@ -182,30 +273,5 @@ html {
     transform-origin: top left;
     transform: rotate(90deg) translateY(-100%);
     overflow: hidden;
-  }
-}
-@media (max-width: 768px) {
-  /* 1. Perkecil ukuran ikon di dalam tombol */
-  .icon-btn {
-    width: 25px; /* Sebelumnya 40px, diperkecil agar tidak memenuhi layar */
-    height: 25px;
-    object-fit: contain;
-  }
-
-  /* 2. Sesuaikan ukuran tombol agar tetap proporsional */
-  .nav-btn {
-    padding: 8px; /* Mengurangi padding agar tombol lebih kompak */
-  }
-
-  /* 3. Perkecil tombol navigasi untuk menu kembali (back) */
-  .back-menu-btn {
-    top: 10px;
-    left: 10px;
-  }
-
-  .icon-text {
-    font-size: 18px; /* Perkecil teks panah back */
-    width: 25px;
-    height: 25px;
   }
 }

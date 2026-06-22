@@ -110,3 +110,23 @@ function resetAutoplay() {
   stopAutoplay();
   if (isPlaying) startAutoplay();
 }
+function rotateScreen() {
+  // Mencoba mengunci orientasi layar ke landscape jika didukung
+  if (screen.orientation && screen.orientation.lock) {
+    screen.orientation.lock("landscape").catch(() => {
+      alert("Silakan putar perangkat Anda ke posisi landscape.");
+    });
+  } else {
+    alert("Silakan putar perangkat Anda ke posisi landscape.");
+  }
+}
+
+// Pastikan fungsi toggleFullscreen tetap ada di script.js Anda
+function toggleFullscreen() {
+  const elem = document.documentElement;
+  if (!document.fullscreenElement) {
+    elem.requestFullscreen?.() || elem.webkitRequestFullscreen?.();
+  } else {
+    document.exitFullscreen?.() || document.webkitExitFullscreen?.();
+  }
+}
