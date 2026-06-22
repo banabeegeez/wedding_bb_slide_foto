@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Bana & Bella Wedding</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="cover" class="section">
+      <video autoplay muted loop playsinline class="cover-video">
+        <source src="videos/cover.mp4" type="video/mp4" />
+      </video>
+      <div class="video-overlay"></div>
+      <div class="cover-content">
+        <button class="glass-btn" onclick="openAlbum()">Open Album</button>
+      </div>
+    </div>
+
+    <div id="menu-view" class="section" style="display: none; opacity: 0">
+      <div class="menu-content">
+        <div class="menu-item">
+          <span class="folder-title">LAMARAN</span>
+          <button class="glass-btn-menu" onclick="openCategory('LAMARAN')">
+            <img
+              id="thumb-LAMARAN"
+              src="buttons/lamaran.png"
+              alt="Lamaran"
+              class="thumbnail-img"
+            />
+          </button>
+        </div>
+        <div class="menu-item">
+          <span class="folder-title">PEMBERKATAN</span>
+          <button class="glass-btn-menu" onclick="openCategory('PEMBERKATAN')">
+            <img
+              id="thumb-PEMBERKATAN"
+              src="buttons/pemberkatan.png"
+              alt="Pemberkatan"
+              class="thumbnail-img"
+            />
+          </button>
+        </div>
+        <div class="menu-item">
+          <span class="folder-title">RESEPSI</span>
+          <button class="glass-btn-menu" onclick="openCategory('RESEPSI')">
+            <img
+              id="thumb-RESEPSI"
+              src="buttons/resepsi.png"
+              alt="Resepsi"
+              class="thumbnail-img"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="album-view" class="section" style="display: none; opacity: 0">
+      <button class="nav-btn back-menu-btn" onclick="backToMenu()">
+        <span class="icon-text">←</span>
+      </button>
+
+      <div class="slide-frame">
+        <img id="slide-img" src="" alt="Album Foto" />
+      </div>
+
+      <div class="controls-container">
+        <button class="nav-btn" onclick="prevSlide()">
+          <img src="buttons/previous_btn.png" alt="Prev" class="icon-btn" />
+        </button>
+        <button class="nav-btn" onclick="toggleAutoplay()">
+          <img
+            src="buttons/pause_btn.png"
+            alt="Toggle"
+            class="icon-btn"
+            id="play-pause-icon"
+          />
+        </button>
+        <button class="nav-btn" onclick="downloadCurrentPhoto()">
+          <img src="buttons/download_btn.png" alt="Download" class="icon-btn" />
+        </button>
+        <button class="nav-btn" onclick="nextSlide()">
+          <img src="buttons/next_btn.png" alt="Next" class="icon-btn" />
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
