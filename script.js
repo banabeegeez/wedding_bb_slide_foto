@@ -110,3 +110,25 @@ function resetAutoplay() {
   stopAutoplay();
   if (isPlaying) startAutoplay();
 }
+function toggleFullscreen() {
+  const elem = document.documentElement; // Membuka seluruh halaman ke mode fullscreen
+  const icon = document.getElementById("fs-icon");
+
+  if (!document.fullscreenElement) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+      /* Safari */
+      elem.webkitRequestFullscreen();
+    }
+    icon.innerText = "⛶"; // Anda bisa ganti dengan icon gambar jika mau
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      /* Safari */
+      document.webkitExitFullscreen();
+    }
+    icon.innerText = "⛶";
+  }
+}
